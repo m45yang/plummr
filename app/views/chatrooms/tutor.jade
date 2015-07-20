@@ -1,0 +1,44 @@
+extends ../layout_user
+
+block content
+  .container-fluid
+    h1= 'Public chat'
+    #message
+    if message
+      h2 #{message}
+    .private-request(style="display: none")
+      p.private-request-body
+      button.btn.btn-success.btn-sm.accept-private-request Accept
+      button.btn.btn-danger.btn-sm.reject-private-request Reject
+    br
+    include ./chat_public.jade
+
+  script.
+    var socket = io('http://localhost:3000/chat/public');
+    // init
+    socket.emit('init', "#{user.username}");
+    socket.on('init', function () {
+      // initialize the page
+      console.log('Initialization successful!');
+    });
+
+    // handle accepted request
+    socket.on('open private', function (room) {
+      window.location = '/private-room/' + room.token;
+    });
+
+    // handle request
+    socket.on('request private', function (u) {
+      $('.private-request-body').html(u.username + ' wants to start a private chat with you.');
+      $('.private-request').show();
+      $('.accept-private-request').one('click', function () {
+        $('.private-request').hide();
+        socket.emit('accept request', u.email);
+        // TODO: handle accepting private requests
+      });
+      $('.reject-private-request').one('click', function () {
+        $('.private-request').hide();
+      });
+    });
+
+  include ./chat_script.jade

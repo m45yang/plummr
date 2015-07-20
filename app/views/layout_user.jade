@@ -1,0 +1,55 @@
+include ./mixins/forms.jade
+
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description', content='')
+    meta(name='author', content='')
+
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/sidebar.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+    // Custom Fonts
+    link(href='/font-awesome/css/font-awesome.min.css', rel='stylesheet', type='text/css')
+    link(href='http://fonts.googleapis.com/css?family=Montserrat:400,700', rel='stylesheet', type='text/css')
+    link(href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic', rel='stylesheet', type='text/css')
+
+    script(src="/socket.io/socket.io.js")
+    script(src='/js/jquery.js')
+
+  body
+    #wrapper
+      #sidebar-wrapper
+        ul.sidebar-nav
+          li.sidebar-brand
+            a(href='/' + user.username)
+              h2= user.username
+          li
+            a(href='/') Home
+          li
+            a(href='/plummrs') Look for Plummrs!
+          li
+            a(href='/' + user.username + '/chat') Go online!
+          li
+            a(href='/credit') Credit
+          li
+            a(href='/settings') Settings
+          li
+            a(href='/signout') Sign out
+
+      #page-content-wrapper
+        block content
+        br
+        br
+        //- .container-fluid
+        //-   details
+        //-     summary <strong>User data</strong>
+        //-     pre= JSON.stringify(user, null, 2)
+
+    script(src='/js/bootstrap.min.js')
+    script(src='/js/classie.js')
+    script(src='/js/cbpAnimatedHeader.js')
+    script(src='/js/freelancer.js')

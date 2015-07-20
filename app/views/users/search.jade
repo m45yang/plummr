@@ -1,0 +1,21 @@
+extends ../layout_user
+
+block content
+  section#search
+    .container-fluid
+      .row
+        .col-lg-12.text-center
+          h2 Plummrs online now
+          hr.star-primary
+          <br>
+          <br>
+      .row
+        each u in users
+          .col-sm-4.portfolio-item
+            a(href='/' + u.username)   
+              img.img-responsive(src='/images/programmer.png', alt='')
+              .searchresult
+                 = u.username 
+        if users.length == 0
+          .col-sm-8.col-sm-offset-3
+            h3 Sorry, no Plummrs are online right now ):

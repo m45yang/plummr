@@ -1,0 +1,106 @@
+extends layout
+
+block content
+  header
+    .container
+        .row
+          .col-lg-12
+            img.img-responsive(src='/images/plunger.png', width='200', height='221', alt='')
+
+            .intro-text
+              span.name Plummr
+
+              hr.star-light
+
+              span.skills Talk to problem solvers. <br />Learn to solve problems.
+            .links #[a.btn.btn-success(href='/register', type='button') Sign up]
+
+  section#technologies
+    .container
+        .row
+          .col-lg-12.text-center
+            h2 Fast service, real results. <br />Talk to the talent you need.
+
+            hr.star-primary
+
+        .row
+          .col-sm-4.portfolio-item
+            a.portfolio-link(href='/signin', data-toggle='modal')
+
+
+              img.img-responsive(src='images/nodejs.png', height='650', width='900', alt='')
+
+          .col-sm-4.portfolio-item
+            a.portfolio-link(href='/signin', data-toggle='modal')
+
+
+              img.img-responsive(src='images/java.png', height='650', width='900', alt='')
+
+          .col-sm-4.portfolio-item
+            a.portfolio-link(href='/signin', data-toggle='modal')
+
+
+              img.img-responsive(src='images/python.png', height='650', width='900', alt='')
+
+          .col-sm-4.portfolio-item
+            a.portfolio-link(href='/signin', data-toggle='modal')
+
+
+              img.img-responsive(src='images/c++.png', height='650', width='900', alt='')
+
+          .col-sm-4.portfolio-item
+            a.portfolio-link(href='/signin', data-toggle='modal')
+
+
+              img.img-responsive(src='images/rails.png', height='650', width='900', alt='')
+
+          .col-sm-4.portfolio-item
+            a.portfolio-link(href='/signin', data-toggle='modal')
+
+
+              img.img-responsive(src='images/javascript.png', height='400', width='900', alt='')
+        hr.star-primary
+  section#diagram
+    .container
+        .row
+          .how
+            h2 How It Works
+          hr.star-primary
+          .diagram
+            img.img-responsive(src='/images/diagram.png', alt='')
+  // About Section
+  section#about.success
+      .container
+        .row
+          .col-lg-12.text-center
+            h2 About
+
+            hr.star-light
+
+        .row
+          .col-lg-4.col-lg-offset-2
+            p
+                Plummr Plummr is a peer-to-peer outsourcing application that finds solutions to your coding problems. Our diverse and talented community is eager to tackle your code problems at rapid speed and reasonable cost.
+
+          .col-lg-4
+            p
+                Plummr Plummr also teaches you how to solve your own code problems. Private one-on-one tutoring will give you the direct applicable knowledge you need to debug your own code, and maybe even be paid to debug others.
+  // Footer
+  footer.text-center
+    .footer-above
+      .container
+        .row
+          .footer-col.col-md-4.col-md-offset-4
+            h3 BattleHacks
+
+            p Toronto, Ontario. July 18th 2015.
+
+    .footer-below
+      .container
+        .row
+          .col-lg-12
+              | :)
+  // Scroll to Top Button (Only visible on small and extra-small screen sizes)
+  .scroll-top.page-scroll.visible-xs.visible-sm
+    a.btn.btn-primary(href='#page-top')
+      i.fa.fa-chevron-up

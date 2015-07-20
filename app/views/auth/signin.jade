@@ -1,0 +1,31 @@
+extends ../layout
+
+block content
+  section.signin
+    .container
+      .row
+        .col-lg-12.text-center
+          h2 Sign In
+          hr.star-primary
+      #message
+        .row
+          span #{message}
+      .row
+        .col-lg-8.col-lg-offset-2
+          +form('/signin')
+            .control-group
+              label
+                | Username
+              .form-group.col-xs-12.floating-label-form-group.controls
+                if username
+                  +input-text('username', 'Username or Email', username)
+                else
+                  +input-text('username', 'Username or Email')
+            .control-group
+              label
+                | Password
+              .form-group.col-xs-12.floating-label-form-group.controls                    
+                +input-password('password', 'Password')
+            .signin-submit
+              .form-group.col-xs-12
+                button.btn.btn-success.btn-lg(type='submit') Sign In

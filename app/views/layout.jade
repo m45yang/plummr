@@ -1,0 +1,60 @@
+include ./mixins/forms.jade
+
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description', content='')
+    meta(name='author', content='')
+
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/sidebar.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+    // Custom Fonts
+    link(href='/font-awesome/css/font-awesome.min.css', rel='stylesheet', type='text/css')
+    link(href='http://fonts.googleapis.com/css?family=Montserrat:400,700', rel='stylesheet', type='text/css')
+    link(href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic', rel='stylesheet', type='text/css')
+
+    script(src="/socket.io/socket.io.js")
+    script(src='/js/jquery.js')
+
+  body
+    // Navigation
+    nav.navbar.navbar-default.navbar-fixed-top
+        .container-fluid
+          // Brand and toggle get grouped for better mobile display
+          .navbar-header.page-scroll
+            button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+              span.sr-only Toggle navigation
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+            a.navbar-brand(href='/') Plummr
+          // Collect the nav links, forms, and other content for toggling
+          #bs-example-navbar-collapse-1.collapse.navbar-collapse
+            ul.nav.navbar-nav.navbar-right
+              li.hidden
+                a(href='#page-top')
+              li.page-scroll
+                a(href='/signin') Login
+              li.page-scroll
+                a(href='/#technologies') Technologies
+              li.page-scroll
+                a(href='/#diagram') How It Works
+              li.page-scroll
+                a(href='/#about') About
+
+    block content
+    br
+    br
+    //- .container-fluid
+    //-   details
+    //-     summary <strong>User data</strong>
+    //-     pre= JSON.stringify(user, null, 2)
+
+    script(src='/js/bootstrap.min.js')
+    script(src='/js/classie.js')
+    script(src='/js/cbpAnimatedHeader.js')
+    script(src='/js/freelancer.js')

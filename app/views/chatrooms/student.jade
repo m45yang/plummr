@@ -1,0 +1,37 @@
+extends ../layout_user
+
+block content
+  .container-fluid
+    h1= 'Chatting with: ' + tutor.username
+    #message
+    if message
+      h2 #{message}
+    include ./chat_public.jade
+    br
+    button.btn.btn-success.btn-md.request-private-session Request private session
+
+  script.
+    var socket = io('http://localhost:3000/chat/public');
+
+    // subscribe
+    socket.emit('subscribe', "#{tutor.username}");
+    console.log('Subscribing...');
+
+    socket.on('subscribe', function () {
+      // initialize the page
+      console.log('Subscribe successful!');
+    });
+
+    // handle accepted request
+    socket.on('open private', function (room) {
+      if (room.guest === "#{user.email}")
+        window.location = '/private-room/' + room.token;
+    });
+
+    // handle 'request private session' button click
+    $('.request-private-session').click(function (event) {
+      event.preventDefault();
+      socket.emit('request private', {email: "#{user.email}", username: "#{user.username}"});
+    });
+
+  include ./chat_script.jade

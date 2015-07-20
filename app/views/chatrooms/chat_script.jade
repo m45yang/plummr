@@ -1,0 +1,26 @@
+script.
+  // send messages
+  $('.chat').submit(function (event) {
+    event.preventDefault();
+    if ($('.chat-input').val()) {
+      socket.emit('message', {
+        message: $('.chat-input').val(),
+        sender: "#{user.username}"
+      });
+      $('.chat-input').val('');
+    }
+  });
+
+  $('.chat').onsubmit = function () {
+    return false;
+  };
+
+  // receive messages
+  socket.on('message', function (msg) {
+    console.log('Received message from ' + msg.sender + ': ' + msg.message);
+    if (msg.sender !== "#{user.username}") {
+      $('.chat-display').append($('<li class="message-incoming">').text(msg.sender + ': ' + msg.message));
+    } else {
+      $('.chat-display').append($('<li class="message-outgoing">').text(msg.sender + ': ' + msg.message));
+    }
+  });

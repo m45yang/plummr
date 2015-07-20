@@ -1,0 +1,104 @@
+mixin form(action)
+  form(
+    action= action
+    method= 'POST'
+    class= attributes.class
+  )
+    block
+
+mixin input-text(name, placeholder, value)
+  input(
+    type= 'text'
+    class= 'form-control'
+    name= name
+    placeholder= placeholder
+    value= value
+    class= attributes.class
+  )
+
+mixin input-password(name, placeholder, value)
+  input(
+    type= 'password'
+    class= 'form-control'
+    name= name
+    placeholder= placeholder
+    value= value
+    class= attributes.class
+  )
+
+mixin input-email(name, placeholder, value)
+  input(
+    type= 'email'
+    class= 'form-control'
+    name= name
+    placeholder= placeholder
+    value= value
+    class= attributes.class
+  )
+
+mixin input-date(name, placeholder, value)
+  input(
+    type= 'date'
+    name= name
+    placeholder= placeholder
+    value= value
+    class= attributes.class
+  )
+
+mixin input-number(name, placeholder, value)
+  input(
+    type= 'number'
+    name= name
+    placeholder= placeholder
+    value= value
+    class= attributes.class
+  )
+
+mixin dropdown(name, ...options)
+  select(name=name)
+    each option in options
+      option(value= option.toLowerCase())= option
+
+mixin checkbox(name, value)
+  input(
+    type= 'checkbox'
+    name= name
+    value= value
+    class= attributes.class
+  )
+
+mixin input-boolean(name, value)
+  input(
+    type= 'checkbox'
+    name= name
+    checked= value ? 'checked' : undefined
+    class= attributes.class
+  )
+
+mixin input-hidden(name, value)
+  input(
+    type= 'hidden'
+    name= name
+    value= value
+    class= attributes.class
+  )
+
+mixin option(value)
+  option(
+    value= value
+    class= attributes.class
+  )
+
+mixin textarea(name, placeholder, value)
+  textarea(
+    name= name
+    placeholder= placeholder
+    class= attributes.class
+  )= value
+
+mixin submit(value)
+  input(
+    type= 'submit'
+    value= value
+    class= attributes.class
+  )

@@ -1,0 +1,32 @@
+extends ../layout_user
+
+block content
+  section#portfolio
+    .container-fluid
+      .row
+        .col-lg-12.text-center
+          h2= profile.username
+          <br>
+      .row
+        if user.username != profile.username
+          .caption-skills.text-center
+                ul.list-inline
+                  li
+                    .links #[a.btn.btn-success(href=profile.username + '/chat', type='button') Public Chatroom] 
+        hr.star-primary
+      .row
+        .col-sm-4.portfolio-item
+          img.img-responsive(src='/images/programmer.png', alt='')
+        .col-sm-7.col-sm-offset-1
+          h3 About me
+          p
+            = profile.desc
+      .row
+        .col-md-6
+          h3 Technical Skills
+          p
+            = profile.skills
+        .col-md-6
+          h3 Contact Information
+          p
+            = profile.email

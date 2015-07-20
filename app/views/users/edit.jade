@@ -1,0 +1,44 @@
+extends ../layout_user
+
+block content
+  section
+    .container-fluid
+      .row
+        .col-lg-12.text-center
+          h2= user.username + '\'s settings'
+          hr.star-primary
+          <br>
+          <br>
+      #message
+      .row
+        .col-md-12
+          +form('/' + user.username)
+            +input-hidden('_method', 'PUT')
+            .row.control-group
+              label
+                | Change username
+              .form-group.col-xs-12.floating-label-form-group.controls  
+                +input-text('username', null, user.username)
+            .row.control-group
+              label
+                | Change email
+              .form-group.col-xs-12.floating-label-form-group.controls   
+                +input-email('email', null, user.email)
+            .row.control-group
+              label
+                | Change password 
+              .form-group.col-xs-12.floating-label-form-group.controls  
+                +input-password('password', 'Enter new password')
+            .row.control-group
+              label
+                | Change description
+              .form-group.col-xs-12.floating-label-form-group.controls  
+                +input-text('desc', 'Enter new description', user.desc)
+            .row.control-group
+              label
+                | Change skills
+              .form-group.col-xs-12.floating-label-form-group.controls  
+                +input-text('skills', 'Enter new skills', user.skills)
+            .signin-submit
+              .form-group.col-xs-12
+                button.btn.btn-success.btn-lg(type='submit') Save

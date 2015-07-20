@@ -1,0 +1,89 @@
+extends ../layout_user
+
+block content
+  .container-fluid
+    h1= 'Private Chat'
+    #message
+    if message
+      h2 #{message}
+    #hangout(data-render="createhangout")
+    h3#timer
+    br
+    +form()(class='chat')
+      .row
+        .col-md-6
+          p Chat
+          .textarea.chat-border
+            ul.chat-display
+        .col-md-6
+          p Live Code Collaboration
+          textarea.code-collab.
+      br
+      .row
+        .col-lg-2
+          p
+            | Message:
+        .col-lg-4
+          +input-text()(class='chat-input')
+
+    .links #[a(href='/') Back to dashboard]
+
+  <script src="https://apis.google.com/js/platform.js"></script>
+
+  script.
+    var socket = io('http://localhost:3000/chat/private');
+
+    // subscribe
+    socket.emit('subscribe', {
+      email: "#{user.email}",
+      token: "#{token}"
+    });
+    console.log('Subscribing...');
+
+    socket.on('subscribe', function () {
+      // initialize the page
+      console.log('Subscribe successful!');
+    });
+
+    socket.on('joined', function (email) {
+      gapi.hangout.render('hangout', {
+        render: 'createhangout',
+        invites: [
+          {
+            id: email,
+            invite_type: 'EMAIL'
+          }
+        ]
+      });
+    });
+
+    function startTimer(duration, display) {
+      var timer = duration, minutes, seconds;
+      setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (--timer < 0) {
+          timer = duration;
+        }
+      }, 1000);
+    };
+
+    startTimer(60 * 60, document.querySelector('#timer'));
+
+  include ./chat_script.jade
+
+  script.
+    $('.code-collab').keyup(function (event) {
+      socket.emit('code', $('.code-collab').val());
+    });
+
+    // receive messages
+    socket.on('code', function (code) {
+      $('.code-collab').val(code);
+    });

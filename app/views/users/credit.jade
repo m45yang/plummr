@@ -1,0 +1,27 @@
+extends ../layout_user
+
+block content
+  section
+    .container
+      .row
+        .col-lg-12.text-center
+          h2= user.username + '\'s Credit'
+          hr.star-primary
+          if message
+            h2 #{message}
+  .container.text-center
+    h3='Available credit: $' + user.credit
+    +form('/add_funds')
+      #payment-form
+      br
+      .credit-submit 
+        +submit('Add $10')(class='btn btn-info btn-lg')
+
+  script(src="https://js.braintreegateway.com/v2/braintree.js")
+  script.
+    // We generated a client token for you so you can test out this code
+    // immediately. In a production-ready integration, you will need to
+    // generate a client token on your server (see section below).
+    braintree.setup("#{clientToken}", "dropin", {
+      container: "payment-form"
+    });

@@ -1,0 +1,26 @@
+extends layout_user
+
+block content
+  section#dashboard
+    .container-fluid
+        .row
+          .col-lg-12.text-center
+            h2 Welcome to Plummr!
+            hr.star-primary
+        .row
+          .col-lg-12.text-center
+            h4 Find the right talent!
+            <br>
+        .row
+          .col-lg-8.col-lg-offset-2
+            form#contactForm(name='sentMessage', novalidate='')
+              .row.control-group
+                .form-group.col-xs-12.floating-label-form-group.controls
+                  label Search
+                  input#name.form-control(type='text', placeholder='Search', required='', data-validation-required-message='Please enter your name.')
+                  p.help-block.text-danger
+              #success
+              br
+              .row
+                .form-group.col-xs-12.text-center
+                  button.btn.btn-success.btn-lg(type='submit') Search!
