@@ -1,5 +1,9 @@
-# BattleHack Toronto 2015
+## Plummr
+A web application to help you find 'Plummrs', experienced developers that can help you perform magic on your code and make it run better. Built with ExpressJS and SocketIO.
 
-## Getting started
+### Getting started
 
-Run `npm install` to install dependencies. Then run `npm start` to run the app. You can test the app using `localhost:3000`.
+    npm install
+    npm start
+    
+Navigate to http://localhost:3000 on your web broswer to see the app in action.
